@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Avatar from '../../common/components/Avatar';
 import { formatBytesShort, formatDate } from '../../common/util/format';
+import { useTranslation } from '../../../hooks/useTranslation';
 import {
     PlatformMetadata_Type,
     SamplerMetadata,
@@ -13,6 +14,7 @@ export interface SamplerTitleProps {
 }
 
 export default function SamplerTitle({ metadata }: SamplerTitleProps) {
+    const { t } = useTranslation();
     const { user, startTime, interval, dataAggregator } = metadata;
 
     const comment = metadata.comment ? '"' + metadata.comment + '"' : '';
@@ -24,12 +26,12 @@ export default function SamplerTitle({ metadata }: SamplerTitleProps) {
         dataAggregator.type === SamplerMetadata_DataAggregator_Type.TICKED
     ) {
         ticksOver =
-            ', ticks >= ' + dataAggregator.tickLengthThreshold / 1000 + 'ms';
+            ', ' + t('sampler.ticks') + ' >= ' + dataAggregator.tickLengthThreshold / 1000 + 'ms';
     }
 
     const alloc =
         metadata.samplerMode === SamplerMetadata_SamplerMode.ALLOCATION;
-    const title = alloc ? 'Memory Profile' : 'Profile';
+    const title = alloc ? t('sampler.memoryProfile') : t('sampler.profile');
     const formattedInterval = alloc
         ? formatBytesShort(interval)
         : `${interval / 1000}ms`;
@@ -38,7 +40,7 @@ export default function SamplerTitle({ metadata }: SamplerTitleProps) {
         <div className="textbox title">
             <Head>
                 <title>
-                    {title} @ {startTimeStr} {startDateStr} | spark
+                    {title} @ {startTimeStr} {startDateStr} | {t('common.spark')}
                 </title>
             </Head>
             <span>
@@ -48,7 +50,7 @@ export default function SamplerTitle({ metadata }: SamplerTitleProps) {
                         PlatformMetadata_Type.APPLICATION && (
                         <Avatar user={user} />
                     )}
-                {user?.name} @ {startTimeStr} {startDateStr}, interval{' '}
+                {user?.name} @ {startTimeStr} {startDateStr}, {t('sampler.interval')}{' '}
                 {formattedInterval}
                 {ticksOver}
             </span>

@@ -1,4 +1,5 @@
 import { SystemStatistics as SystemStatisticsProto } from '../../../proto/spark_pb';
+import { useTranslation } from '../../../../hooks/useTranslation';
 
 export interface JvmStartupArgsProps {
     systemStatistics: SystemStatisticsProto;
@@ -7,9 +8,11 @@ export interface JvmStartupArgsProps {
 export default function JvmStartupArgs({
     systemStatistics,
 }: JvmStartupArgsProps) {
+    const { t } = useTranslation();
+    
     return (
         <p>
-            The JVM was started with the following arguments:
+            {t('sampler.jvmStartupArgs.description')}
             <br />
             <br />
             <span

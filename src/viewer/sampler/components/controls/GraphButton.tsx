@@ -1,6 +1,7 @@
 import { faChartLine } from '@fortawesome/free-solid-svg-icons';
 import { Dispatch, SetStateAction } from 'react';
 import FaButton from '../../../../components/FaButton';
+import { useTranslation } from '../../../../hooks/useTranslation';
 
 export interface GraphButtonProps {
     graphSupported: boolean;
@@ -13,6 +14,7 @@ export default function GraphButton({
     showGraph,
     setShowGraph,
 }: GraphButtonProps) {
+    const { t } = useTranslation();
     if (!graphSupported) {
         return null;
     }
@@ -26,6 +28,7 @@ export default function GraphButton({
             icon={faChartLine}
             onClick={onClick}
             title="View the graph"
+            titleKey="button.viewGraph"
             extraClassName={showGraph ? 'toggled' : undefined}
         />
     );

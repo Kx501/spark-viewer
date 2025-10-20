@@ -5,6 +5,7 @@ import {
     SystemStatistics as SystemStatisticsProto,
 } from '../../../proto/spark_pb';
 import { formatDuration } from '../../util/format';
+import { useTranslation } from '../../../../hooks/useTranslation';
 
 export interface PlatformStatisticsProps {
     platform: PlatformMetadata;
@@ -29,31 +30,39 @@ export default function PlatformStatistics({
     numberOfIncludedTicks,
     engine,
 }: PlatformStatisticsProps) {
+    const { t } = useTranslation();
+    
     return (
         <>
             <p>
-                The {platformType === 'application' ? 'system' : 'platform'} is
-                a <span>{platform.brand || platform.name}</span> {platformType}{' '}
-                running {platformType === 'application' ? 'spark' : ''} version
-                &quot;
-                <span>{platform.version}</span>&quot;.
+                {t('sampler.platformStatistics.platformDescription', {
+                    platformType: t(`sampler.platformStatistics.${platformType === 'application' ? 'system' : 'platform'}`),
+                    brand: platform.brand || platform.name,
+                    spark: platform.sparkVersion ? `Spark ${platform.sparkVersion}` : 'Spark',
+                    version: platform.version
+                })}
             </p>
             {platform.minecraftVersion && (
                 <p>
-                    The detected Minecraft version is &quot;
-                    <span>{platform.minecraftVersion}</span>&quot;.
+                    {t('sampler.platformStatistics.minecraftVersion', {
+                        version: platform.minecraftVersion
+                    })}
                 </p>
             )}
             {onlineMode && (
                 <p>
-                    The {platformType} is running in <span>{onlineMode}</span>.
+                    {t('sampler.platformStatistics.onlineMode', {
+                        platformType: t(`sampler.platformStatistics.${platformType}`),
+                        mode: onlineMode
+                    })}
                 </p>
             )}
             {platformStatistics?.playerCount > 0 && (
                 <p>
-                    The {platformType} had a player count of{' '}
-                    <span>{platformStatistics.playerCount}</span> when the
-                    profile completed.
+                    {t('sampler.platformStatistics.playerCount', {
+                        platformType: t(`sampler.platformStatistics.${platformType}`),
+                        count: platformStatistics.playerCount
+                    })}
                 </p>
             )}
             {!!systemStatistics && (
@@ -61,33 +70,19 @@ export default function PlatformStatistics({
             )}
             {runningTime && (
                 <p>
-                    The profiler{' '}
-                    {engine ? (
-                        <>
-                            (engine{' '}
-                            <span>
-                                {engine == SamplerMetadata_SamplerEngine.ASYNC
-                                    ? 'async'
-                                    : 'java'}
-                            </span>
-                            ){' '}
-                        </>
-                    ) : (
-                        ''
-                    )}
-                    was running for <span>{formatDuration(runningTime)}</span>
-                    {!!numberOfTicks && (
-                        <>
-                            {' '}
-                            (<span>{numberOfTicks}</span> ticks)
-                        </>
-                    )}
-                    .
+                    {t('sampler.platformStatistics.profilerRunning', {
+                        engine: engine !== undefined ? (engine == SamplerMetadata_SamplerEngine.ASYNC
+                            ? t('sampler.platformStatistics.asyncEngine')
+                            : t('sampler.platformStatistics.javaEngine')) : t('sampler.platformStatistics.javaEngine'),
+                        duration: formatDuration(runningTime),
+                        ticks: !!numberOfTicks ? ` (${numberOfTicks} ticks)` : ''
+                    })}
                     {!!numberOfIncludedTicks && (
                         <>
                             {' '}
-                            <span>{numberOfIncludedTicks}</span> ticks exceeded
-                            the &#39;only ticks over&#39; threshold.
+                            {t('sampler.platformStatistics.includedTicks', {
+                                count: numberOfIncludedTicks
+                            })}
                         </>
                     )}
                 </p>
@@ -101,36 +96,44 @@ interface SystemStatisticsProps {
 }
 
 const SystemStatistics = ({ systemStatistics }: SystemStatisticsProps) => {
+    const { t } = useTranslation();
+    
     return (
         <>
             <p>
-                The system is running <span>{systemStatistics.os!.name}</span> (
-                <span>{systemStatistics.os!.arch}</span>) version &quot;
-                <span>{systemStatistics.os!.version}</span>&quot; and has{' '}
-                <span>{systemStatistics.cpu!.threads}</span> CPU threads
-                available.
+                {t('sampler.platformStatistics.systemDescription', {
+                    osName: systemStatistics.os!.name,
+                    arch: systemStatistics.os!.arch,
+                    osVersion: systemStatistics.os!.version,
+                    threads: systemStatistics.cpu!.threads
+                })}
             </p>
             {systemStatistics.cpu!.modelName && (
                 <p>
-                    The CPU is described as an{' '}
-                    <span>{systemStatistics.cpu!.modelName}</span>.
+                    {t('sampler.platformStatistics.cpuDescription', {
+                        modelName: systemStatistics.cpu!.modelName
+                    })}
                 </p>
             )}
             <p>
-                The process is using Java{' '}
-                <span>{systemStatistics.java!.version}</span> (
-                <span>{systemStatistics.java!.vendorVersion}</span> from{' '}
-                <span>{systemStatistics.java!.vendor}</span>).
+                {t('sampler.platformStatistics.javaDescription', {
+                    javaVersion: systemStatistics.java!.version,
+                    vendorVersion: systemStatistics.java!.vendorVersion,
+                    vendor: systemStatistics.java!.vendor
+                })}
                 {systemStatistics.jvm?.name && (
                     <>
                         {' '}
-                        The JVM is a <span>{systemStatistics.jvm?.name}</span>.
+                        {t('sampler.platformStatistics.jvmDescription', {
+                            jvmName: systemStatistics.jvm?.name
+                        })}
                     </>
                 )}
             </p>
             <p>
-                The current process uptime is{' '}
-                <span>{formatDuration(systemStatistics.uptime)}</span>.
+                {t('sampler.platformStatistics.uptime', {
+                    uptime: formatDuration(systemStatistics.uptime)
+                })}
             </p>
         </>
     );

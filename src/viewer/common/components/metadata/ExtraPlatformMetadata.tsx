@@ -1,4 +1,6 @@
+import React from 'react';
 import ConfigurationObject from './ConfigurationObject';
+import { useTranslation } from '../../../../hooks/useTranslation';
 
 export interface ExtraPlatformMetadataProps {
     data: Record<string, any>;
@@ -7,9 +9,11 @@ export interface ExtraPlatformMetadataProps {
 export default function ExtraPlatformMetadata({
     data,
 }: ExtraPlatformMetadataProps) {
+    const { t } = useTranslation();
+    
     return (
         <div className="configurations">
-            <p>Some extra metadata was provided by the platform:</p>
+            <p>{t('sampler.extraPlatformMetadata.description')}</p>
             <ConfigurationObject data={data} />
         </div>
     );

@@ -8,6 +8,7 @@ import {
     faHeartbeat,
     faMemory,
     faMicrochip,
+    faLanguage,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useRouter } from 'next/router';
@@ -19,10 +20,12 @@ import { NextPageWithLayout, SelectedFileContext } from './_app';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { env } from '../env';
 import styles from '../style/homepage.module.scss';
+import { useTranslation } from '../hooks/useTranslation';
 
 const Index: NextPageWithLayout = () => {
     const { setSelectedFile } = useContext(SelectedFileContext);
     const router = useRouter();
+    const { t } = useTranslation();
 
     function onFileSelected(file: File) {
         setSelectedFile(file);
@@ -39,13 +42,15 @@ const Index: NextPageWithLayout = () => {
 };
 
 const Navigation = () => {
+    const { t } = useTranslation();
+    
     return (
         <nav>
-            <Link title="Downloads" icon={faArrowCircleDown} url="download">
-                Download the latest version of spark.
+            <Link title={t('homepage.navigation.downloads.title')} icon={faArrowCircleDown} url="download">
+                {t('homepage.navigation.downloads.description')}
             </Link>
-            <Link title="Documentation" icon={faBook} url="docs">
-                Read the documentation and usage guides.
+            <Link title={t('homepage.navigation.docs.title')} icon={faBook} url="docs">
+                {t('homepage.navigation.docs.description')}
             </Link>
         </nav>
     );
@@ -71,31 +76,33 @@ const Link = ({ title, icon, url, children }: LinkProps) => {
 };
 
 const AboutSection = () => {
+    const { t } = useTranslation();
+    
     return (
         <section>
-            <h2>About</h2>
-            <p>
-                spark is a performance profiler, made up of three main
-                components.
-            </p>
-            <AboutFeature title="Profiler" icon={faMicrochip}>
-                spark can help to diagnose performance problems and bottlenecks
-                with its built-in profiler.
+            <h2>{t('homepage.about.title')}</h2>
+            <p>{t('homepage.about.description')}</p>
+            <AboutFeature title={t('homepage.about.profiler.title')} icon={faMicrochip}>
+                {t('homepage.about.profiler.description')}
             </AboutFeature>
-            <AboutFeature title="Memory Inspection" icon={faMemory}>
-                spark can produce full heap dumps, present a summary of what’s
-                using the most memory, and monitor GC activity.
+            <AboutFeature title={t('homepage.about.memory.title')} icon={faMemory}>
+                {t('homepage.about.memory.description')}
             </AboutFeature>
-            <AboutFeature title="Health Reporting" icon={faHeartbeat}>
-                spark monitors and reports a number of key metrics which are
-                useful for tracking performance over time.
+            <AboutFeature title={t('homepage.about.health.title')} icon={faHeartbeat}>
+                {t('homepage.about.health.description')}
             </AboutFeature>
 
             <p>
-                More information about spark can be found on{' '}
-                <a href="https://github.com/lucko/spark">GitHub</a>, or you can
-                come chat with us on{' '}
-                <a href="https://discord.gg/PAGT2fu">Discord</a>.
+                {t('homepage.about.moreInfo', {
+                    github: 'GitHub',
+                    discord: 'Discord'
+                })}
+                {' '}
+                <a href="https://github.com/lucko/spark">GitHub</a>
+                {' '}
+                {t('common.and')}
+                {' '}
+                <a href="https://discord.gg/PAGT2fu">Discord</a>
             </p>
         </section>
     );
@@ -124,42 +131,44 @@ const ViewerSection = ({
 }: {
     onFileSelected: (file: File) => void;
 }) => {
+    const { t } = useTranslation();
+    
     return (
         <section>
-            <h2>Viewer</h2>
-            <p>This website is also an online viewer for spark data.</p>
-            <p>In order to use it:</p>
+            <h2>{t('homepage.viewer.title')}</h2>
+            <p>{t('homepage.viewer.description')}</p>
+            <p>{t('homepage.viewer.usageSteps.title')}</p>
             <ol>
                 <li>
-                    Generate a{' '}
+                    {t('homepage.viewer.usageSteps.step1', {
+                        profileLink: t('common.profile'),
+                        heapLink: t('common.heap')
+                    })}
+                    {' '}
                     <a
                         href={`${env.NEXT_PUBLIC_SPARK_BASE_URL}/docs/Command-Usage#spark-profiler`}
                     >
-                        profile
-                    </a>{' '}
-                    or{' '}
+                        {t('common.profile')}
+                    </a>
+                    {' '}
+                    {t('common.and')}
+                    {' '}
                     <a
                         href={`${env.NEXT_PUBLIC_SPARK_BASE_URL}/docs/Command-Usage#spark-heapsummary`}
                     >
-                        heap summary
-                    </a>{' '}
-                    using the appropriate spark commands.
+                        {t('common.heap')}
+                    </a>
                 </li>
                 <li>
-                    After the data has been uploaded, click the link to open the
-                    viewer.
+                    {t('homepage.viewer.usageSteps.step2')}
                 </li>
             </ol>
             <p>
-                You can also generate or export a <code>.sparkprofile</code> or{' '}
-                <code>.sparkheap</code> file and open it by dragging it into the
-                box below.
+                {t('homepage.viewer.fileUpload')}
             </p>
             <FilePicker callback={onFileSelected} />
             <p>
-                The website/viewer is written in JavaScript using the React
-                framework, and open-source&apos;d on GitHub. Pull requests are
-                much appreciated!
+                {t('homepage.viewer.techInfo')}
             </p>
         </section>
     );

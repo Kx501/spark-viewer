@@ -2,6 +2,7 @@ import { Dispatch, SetStateAction, useContext } from 'react';
 import { SamplerMetadata_SamplerMode } from '../../../../proto/spark_pb';
 import { MetadataContext } from '../../SamplerContext';
 import Button from './Button';
+import { useTranslation } from '../../../../../hooks/useTranslation';
 
 export interface SelfTimeModeButtonProps {
     selfTimeMode: boolean;
@@ -13,6 +14,7 @@ export default function SelfTimeModeButton({
     setSelfTimeMode,
 }: SelfTimeModeButtonProps) {
     const metadata = useContext(MetadataContext)!;
+    const { t } = useTranslation();
 
     if (metadata.samplerMode === SamplerMetadata_SamplerMode.ALLOCATION) {
         return (
@@ -20,17 +22,17 @@ export default function SelfTimeModeButton({
                 value={selfTimeMode}
                 setValue={setSelfTimeMode}
                 title="Sort Mode"
+                titleKey="button.sortMode"
                 labelTrue="Self bytes allocated"
+                labelTrueKey="button.selfBytesAllocated"
                 labelFalse="Total bytes allocated"
+                labelFalseKey="button.totalBytesAllocated"
             >
                 <p>
-                    Methods are sorted according to the number of bytes of
-                    memory allocated directly within the method
+                    {t('button.selfBytesAllocatedDesc')}
                 </p>
                 <p>
-                    Methods are sorted according to the number of bytes of
-                    memory allocated directly within the method as well as
-                    allocations in sub-calls
+                    {t('button.totalBytesAllocatedDesc')}
                 </p>
             </Button>
         );
@@ -40,17 +42,17 @@ export default function SelfTimeModeButton({
                 value={selfTimeMode}
                 setValue={setSelfTimeMode}
                 title="Sort Mode"
+                titleKey="button.sortMode"
                 labelTrue="Self Time"
+                labelTrueKey="button.selfTime"
                 labelFalse="Total Time"
+                labelFalseKey="button.totalTime"
             >
                 <p>
-                    Methods are sorted according to their &#39;self time&#39;
-                    (the time spent executing code within the method)
+                    {t('button.selfTimeDesc')}
                 </p>
                 <p>
-                    Methods are sorted according to their &#39;total time&#39;
-                    (the time spent executing code within the method and the
-                    time spent executing sub-calls)
+                    {t('button.totalTimeDesc')}
                 </p>
             </Button>
         );

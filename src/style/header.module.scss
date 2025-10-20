@@ -34,6 +34,35 @@
         filter: invert(0%);
         padding-right: 5px;
     }
+
+    .languageSwitcher {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background-color: #252b2d;
+        border-radius: 5px;
+        padding: 5px 10px;
+        
+        .languageSelect {
+            background: #181d1f;
+            color: #ccc;
+            border: 1px solid #3a4245;
+            border-radius: 3px;
+            padding: 3px 5px;
+            font-size: 12px;
+            cursor: pointer;
+            
+            &:focus {
+                outline: none;
+                border-color: #5d7b8a;
+            }
+            
+            option {
+                background: #181d1f;
+                color: #ccc;
+            }
+        }
+    }
 }
 
 .homepage-header {

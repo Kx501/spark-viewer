@@ -2,6 +2,7 @@ import {
     PluginOrModMetadata,
     WorldStatistics_DataPack,
 } from '../../../proto/spark_pb';
+import { useTranslation } from '../../../../hooks/useTranslation';
 
 export interface PluginsModsListProps {
     plugins: PluginOrModMetadata[];
@@ -12,11 +13,12 @@ export default function PluginsModsList({
     plugins,
     dataPacks,
 }: PluginsModsListProps) {
+    const { t } = useTranslation();
     return (
         <div className="plugins-mods-list">
             {!!plugins.length && (
                 <>
-                    <h2>Plugins/Mods</h2>
+                    <h2>{t('sampler.pluginsModsList.pluginsMods')}</h2>
                     <ul>
                         {plugins.map(plugin => (
                             <li key={plugin.name}>
@@ -28,7 +30,7 @@ export default function PluginsModsList({
             )}
             {!!dataPacks.length && (
                 <>
-                    <h2>Data Packs</h2>
+                    <h2>{t('sampler.pluginsModsList.dataPacks')}</h2>
                     <ul>
                         {dataPacks.map(pack => (
                             <li key={pack.name}>

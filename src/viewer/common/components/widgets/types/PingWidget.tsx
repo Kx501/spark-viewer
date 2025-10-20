@@ -2,12 +2,14 @@ import { PlatformStatistics_Ping } from '../../../../proto/spark_pb';
 import { Formatter, WidgetFormat } from '../format';
 import Widget from '../Widget';
 import WidgetValue from '../WidgetValue';
+import { useTranslation } from '../../../../../hooks/useTranslation';
 
 export interface PingWidgetProps {
     ping: PlatformStatistics_Ping;
 }
 
 export default function PingWidget({ ping }: PingWidgetProps) {
+    const { t } = useTranslation();
     const formatter: Formatter = {
         color: value => {
             if (value >= 200) {
@@ -27,11 +29,11 @@ export default function PingWidget({ ping }: PingWidgetProps) {
     };
 
     return (
-        <Widget title="Ping" formatter={formatter}>
-            <WidgetValue value={ping.last15M!.min} label="min" />
-            <WidgetValue value={ping.last15M!.median} label="med" />
-            <WidgetValue value={ping.last15M!.percentile95} label="95%ile" />
-            <WidgetValue value={ping.last15M!.max} label="max" />
+        <Widget title={t('widget.ping')} formatter={formatter}>
+            <WidgetValue value={ping.last15M!.min} label={t('widget.min')} />
+            <WidgetValue value={ping.last15M!.median} label={t('widget.med')} />
+            <WidgetValue value={ping.last15M!.percentile95} label={t('widget.percentile95')} />
+            <WidgetValue value={ping.last15M!.max} label={t('widget.max')} />
         </Widget>
     );
 }

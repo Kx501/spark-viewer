@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction, useContext, useState } from 'react';
 import TextBox from '../../../../components/TextBox';
+import { useTranslation } from '../../../../hooks/useTranslation';
 import SourceThreadVirtualNode from '../../node/SourceThreadVirtualNode';
 import SamplerData from '../../SamplerData';
 import {
@@ -24,6 +25,7 @@ export default function SourcesView({
     viewData,
     setLabelMode,
 }: SourcesViewProps) {
+    const { t } = useTranslation();
     const labelMode = useContext(LabelModeContext);
     const [merged, setMerged] = useState(true);
     const view = merged ? viewData?.sourcesMerged : viewData?.sourcesSeparate;
@@ -39,7 +41,7 @@ export default function SourcesView({
             </SourcesViewHeader>
             <hr />
             {!view ? (
-                <TextBox>Loading...</TextBox>
+                <TextBox>{t('common.loading')}</TextBox>
             ) : (
                 <>
                     {view.map(viewData => (
@@ -95,6 +97,7 @@ const SourceSection = ({ data, viewData }: SourceSectionProps) => {
 };
 
 const OtherSourcesSection = ({ alreadyShown }: { alreadyShown: string[] }) => {
+    const { t } = useTranslation();
     const metadata = useContext(MetadataContext)!;
     if (!metadata.sources) {
         return null;
@@ -111,15 +114,14 @@ const OtherSourcesSection = ({ alreadyShown }: { alreadyShown: string[] }) => {
     const sourceNoun = ['Fabric', 'Forge', 'NeoForge'].includes(
         metadata?.platform?.name!
     )
-        ? 'mods'
-        : 'plugins';
+        ? t('viewer.mods')
+        : t('viewer.plugins');
 
     return (
         <div className="other-sources">
-            <h2>Other</h2>
+            <h2>{t('viewer.other')}</h2>
             <p>
-                The following other {sourceNoun} are installed, but didn&apos;t
-                show up in this profile. Yay!
+                {t('viewer.otherSourcesDescription', { sourceNoun })}
             </p>
             <ul>
                 {otherSources.map(({ name, version }) => (

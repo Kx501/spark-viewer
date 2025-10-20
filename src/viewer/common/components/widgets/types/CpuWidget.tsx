@@ -2,6 +2,7 @@ import { SystemStatistics_Cpu_Usage } from '../../../../proto/spark_pb';
 import { Formatter, WidgetFormat } from '../format';
 import Widget from '../Widget';
 import WidgetValue from '../WidgetValue';
+import { useTranslation } from '../../../../../hooks/useTranslation';
 
 export interface CpuWidgetProps {
     cpu: SystemStatistics_Cpu_Usage;
@@ -9,6 +10,7 @@ export interface CpuWidgetProps {
 }
 
 export default function CpuWidget({ cpu, label }: CpuWidgetProps) {
+    const { t } = useTranslation();
     const formatter: Formatter = {
         color: value => {
             if (value > 0.9) {
@@ -29,9 +31,9 @@ export default function CpuWidget({ cpu, label }: CpuWidgetProps) {
     };
 
     return (
-        <Widget title="CPU" label={label} formatter={formatter}>
-            <WidgetValue value={cpu.last1M} label="1m" />
-            <WidgetValue value={cpu.last15M} label="15m" />
+        <Widget title={t('widget.cpu')} label={label} formatter={formatter}>
+            <WidgetValue value={cpu.last1M} label={t('widget.cpu1m')} />
+            <WidgetValue value={cpu.last15M} label={t('widget.cpu15m')} />
         </Widget>
     );
 }

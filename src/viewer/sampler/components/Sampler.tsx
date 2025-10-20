@@ -8,6 +8,7 @@ import useMetadataToggle from '../../common/hooks/useMetadataToggle';
 import useToggle from '../../common/hooks/useToggle';
 import { ExportCallback } from '../../common/logic/export';
 import { SamplerMetadata } from '../../proto/spark_pb';
+import { useTranslation } from '../../../hooks/useTranslation';
 import useHighlight from '../hooks/useHighlight';
 import useSearchQuery from '../hooks/useSearchQuery';
 import useSocketBindings from '../hooks/useSocketBindings';
@@ -51,6 +52,7 @@ export default function Sampler({
     setMetadata,
     exportCallback,
 }: SamplerProps) {
+    const { t } = useTranslation();
     const searchQuery = useSearchQuery(data);
     const highlighted = useHighlight();
     const [labelMode, setLabelMode] = useState(false);
@@ -225,9 +227,9 @@ export default function Sampler({
             )}
 
             <Menu id={'sampler-cm'} theme="dark">
-                <Item onClick={handleFlame}>View as Flame Graph</Item>
-                <Item onClick={handleHighlight}>Toggle bookmark</Item>
-                <Item onClick={handleHighlightClear}>Clear all bookmarks</Item>
+                <Item onClick={handleFlame}>{t('contextMenu.viewAsFlameGraph')}</Item>
+                <Item onClick={handleHighlight}>{t('contextMenu.toggleBookmark')}</Item>
+                <Item onClick={handleHighlightClear}>{t('contextMenu.clearAllBookmarks')}</Item>
             </Menu>
         </div>
     );

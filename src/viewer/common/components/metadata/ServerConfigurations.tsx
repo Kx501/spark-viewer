@@ -1,4 +1,5 @@
 import ConfigurationObject from './ConfigurationObject';
+import { useTranslation } from '../../../../hooks/useTranslation';
 
 export interface ServerConfigurationsProps {
     parsedConfigurations: Record<string, any>;
@@ -7,9 +8,11 @@ export interface ServerConfigurationsProps {
 export default function ServerConfigurations({
     parsedConfigurations,
 }: ServerConfigurationsProps) {
+    const { t } = useTranslation();
+    
     return (
         <div className="configurations">
-            <p>The server is using the following configuration settings:</p>
+            <p>{t('sampler.serverConfigurations.description')}</p>
             <ConfigurationObject data={parsedConfigurations} />
         </div>
     );

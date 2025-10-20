@@ -6,6 +6,7 @@ import {
     objectMap,
     unwrapSamplerMetadata,
 } from '../../util/metadata';
+import { useTranslation } from '../../../../hooks/useTranslation';
 import ExtraPlatformMetadata from './ExtraPlatformMetadata';
 import GameRules from './GameRules';
 import JvmStartupArgs from './JvmStartupArgs';
@@ -29,6 +30,7 @@ export default function MetadataDetail({ metadata }: MetadataDetailProps) {
         extraPlatformMetadata,
     } = metadata;
     const platformType = PlatformMetadata_Type[platform!.type].toLowerCase();
+    const { t } = useTranslation();
 
     const { parsedConfigurations, onlineMode } = useMemo(() => {
         let parsedConfigurations: Record<string, any> | undefined;
@@ -81,6 +83,18 @@ export default function MetadataDetail({ metadata }: MetadataDetailProps) {
             !!platformStatistics?.world?.dataPacks.length ||
             !!Object.keys(metadata.sources).length,
     };
+    
+    const viewLabels: Record<string, string> = {
+        'Platform': t('sampler.metadata.platform'),
+        'Memory': t('sampler.metadata.memory'),
+        'Network': t('sampler.metadata.network'),
+        'JVM Flags': t('sampler.metadata.jvmFlags'),
+        'Configurations': t('sampler.metadata.configurations'),
+        'World': t('sampler.metadata.world'),
+        'Misc': t('sampler.metadata.misc'),
+        'Game Rules': t('sampler.metadata.gameRules'),
+        'Plugins/Mods': t('sampler.metadata.pluginsMods'),
+    };
 
     return (
         <div className="textbox metadata-detail">
@@ -95,7 +109,7 @@ export default function MetadataDetail({ metadata }: MetadataDetailProps) {
                                     view === name ? 'toggled' : undefined
                                 }
                             >
-                                {name}
+                                {viewLabels[name]}
                             </div>
                         )
                     );

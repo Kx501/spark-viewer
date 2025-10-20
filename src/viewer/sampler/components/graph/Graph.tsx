@@ -4,6 +4,7 @@ import { TimeSelector } from '../../hooks/useTimeSelector';
 import GraphChart from './GraphChart';
 import GraphLegend from './GraphLegend';
 import { ChartDataWrapper, IGNORED_KEYS, WindowStatisticsKey } from './util';
+import { useTranslation } from '../../../../hooks/useTranslation';
 
 export interface GraphProps {
     show: boolean;
@@ -16,6 +17,8 @@ export default function Graph({
     timeSelector,
     windowStatistics,
 }: GraphProps) {
+    const { t } = useTranslation();
+    
     // get an array of all window times
     const times = Array.from(timeSelector.times).sort();
 
@@ -83,12 +86,8 @@ export default function Graph({
     return (
         <div className="graph">
             <div className="header">
-                <h2>Refine</h2>
-                <p>
-                    The graph below shows some key metrics over the course of
-                    the profile. You can drag + select with your cursor to
-                    refine the profile to a specific time period.
-                </p>
+                <h2>{t('graph.refine')}</h2>
+                <p>{t('graph.description')}</p>
             </div>
 
             <GraphChart

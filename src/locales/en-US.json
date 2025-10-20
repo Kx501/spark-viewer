@@ -1,0 +1,293 @@
+{
+  "common": {
+    "spark": "Spark",
+    "download": "Download",
+    "documentation": "Documentation",
+    "viewer": "Viewer",
+    "about": "About",
+    "profile": "Profiler",
+    "heap": "Heap",
+    "health": "Health",
+    "home": "Home",
+    "language": "Language",
+    "loading": "Loading...",
+    "warning": "warning"
+  },
+  "button": {
+    "label": "Label",
+    "bytesPerSecond": "Bytes per second",
+    "timePerTick": "Time per tick",
+    "percentage": "Percentage",
+    "mergeMode": "Merge Mode",
+    "merge": "Merge",
+    "separate": "Separate",
+    "display": "Display",
+    "bottomUp": "Bottom Up",
+    "topDown": "Top Down",
+    "sortMode": "Sort Mode",
+    "selfBytesAllocated": "Self bytes allocated",
+    "totalBytesAllocated": "Total bytes allocated",
+    "selfTime": "Self Time",
+    "totalTime": "Total Time",
+    "exitFlameGraph": "Exit the Flame Graph view",
+    "showSettings": "Click to show the settings menu",
+    "viewGraph": "View the graph",
+    "viewFlameGraph": "View the profile as a Flame Graph",
+    "exportProfile": "Export this profile to a local file",
+    "toggleWidgets": "Click to toggle the widgets",
+    "toggleMetadata": "Click to toggle the detailed metadata display",
+    "toggleView": "Toggle the view",
+    "previous": "Previous",
+    "next": "Next",
+    "mappings": "mappings"
+  },
+  "heapTable": {
+    "rank": "Rank",
+    "instances": "Instances",
+    "size": "Size",
+    "type": "Type"
+  },
+  "networkStatistics": {
+    "min": "min",
+    "med": "med",
+    "percentile95": "95%ile",
+    "max": "max"
+  },
+  "heapSummary": {
+    "title": "Heap Summary",
+    "createdBy": "created by"
+  },
+  "toggleView": {
+    "all": "all",
+    "flat": "flat",
+    "mods": "mods",
+    "plugins": "plugins"
+  },
+  "widget": {
+    "cpu": "CPU",
+    "gc": "GC",
+    "disk": "Disk",
+    "ping": "Ping",
+    "tps": "TPS",
+    "mspt": "MSPT",
+    "memory": "Memory",
+    "during": "during",
+    "all": "all",
+    "process": "process",
+    "system": "system",
+    "physical": "physical",
+    "swap": "swap",
+    "min": "min",
+    "med": "med",
+    "percentile95": "95%ile",
+    "max": "max",
+    "gcTotal": "total",
+    "gcAvgTime": "avg time",
+    "gcAvgFreq": "avg freq",
+    "tps1m": "1m",
+    "tps5m": "5m",
+    "tps15m": "15m",
+    "cpu1m": "1m",
+    "cpu15m": "15m"
+  },
+  "homepage": {
+    "title": "Spark - A performance profiler for Minecraft",
+    "subtitle": "A performance profiler for Minecraft clients, servers, and proxies.",
+    "navigation": {
+      "downloads": {
+        "title": "Downloads",
+        "description": "Download the latest version of spark."
+      },
+      "docs": {
+        "title": "Documentation",
+        "description": "Read the documentation and usage guides."
+      }
+    },
+    "about": {
+      "title": "About",
+      "description": "spark is a performance profiler, made up of three main components.",
+      "profiler": {
+        "title": "Profiler",
+        "description": "spark can help to diagnose performance problems and bottlenecks with its built-in profiler."
+      },
+      "memory": {
+        "title": "Memory Inspection",
+        "description": "spark can produce full heap dumps, present a summary of what's using the most memory, and monitor GC activity."
+      },
+      "health": {
+        "title": "Health Reporting",
+        "description": "spark monitors and reports a number of key metrics which are useful for tracking performance over time."
+      },
+      "moreInfo": "More information about spark can be found on {github}, or you can come chat with us on {discord}."
+    },
+    "viewer": {
+      "title": "Viewer",
+      "description": "This website is also an online viewer for spark data.",
+      "usageSteps": {
+        "title": "In order to use it:",
+        "step1": "Generate a {profileLink} or {heapLink} using the appropriate spark commands.",
+        "step2": "After the data has been uploaded, click the link to open the viewer."
+      },
+      "fileUpload": "You can also generate or export a .sparkprofile or .sparkheap file and open it by dragging it into the box below.",
+      "techInfo": "The website/viewer is written in JavaScript using the React framework, and open-source'd on GitHub. Pull requests are much appreciated!"
+    }
+  },
+  "header": {
+    "title": "Spark"
+  },
+  "footer": {
+    "copyright": "© {year} Spark. Released under the terms of the GNU GPLv3 license.",
+    "and": "and",
+    "freeOpenSource": "are free & open source on GitHub",
+    "andOther": "& other spark",
+    "contributors": "contributors"
+  },
+  "downloads": {
+    "title": "Downloads",
+    "latestVersion": "The latest version of spark is",
+    "installInstructions": "Install instructions",
+    "installInstructionsText": "Download the .jar file and place it in your server's plugins/ or mods/ folder. Then restart the server.",
+    "recentChanges": "Recent Changes",
+    "andMore": "And more! See the",
+    "fullChangelog": "full changelog",
+    "otherPlatforms": "Other platforms",
+    "otherPlatformsText": "spark is also available for other platforms. Please note that these versions may be outdated.",
+    "olderVersions": "Older versions",
+    "olderVersionsText": "The following versions are also available for download. Please note that these versions may be outdated.",
+    "error": {
+      "versionInfo": "Error: unable to get version information."
+    }
+  },
+  "changelog": {
+    "title": "Changelog",
+    "description": "The list below shows the most recent changes committed to the spark Git repository.",
+    "gitRepo": "spark Git repository",
+    "downloadPage": "downloads page",
+    "getLatestVersion": "Go to the downloads page to get the latest version.",
+    "error": {
+      "getChangelog": "Error: unable to get changelog."
+    }
+  },
+  "errors": {
+    "404": "404 - Page Not Found",
+    "500": "500 - Server-side error occurred",
+    "serverError": "Server error {statusCode}",
+    "unexpectedError": "Uh oh. An unexpected error occurred with spark-viewer client."
+  },
+  "thumbnail": {
+    "error": ":("
+  },
+  "filePicker": {
+    "dragDrop": "Drag & drop a profile/heap file here or click to select",
+    "onlyAccepted": "(only .sparkprofile or .sparkheap files are accepted)"
+  },
+  "viewer": {
+    "loadingFile": "Loading file...",
+    "downloading": "Downloading...",
+    "unableToLoad": "Unable to load the data. Perhaps it expired? Are you using a recent version?",
+    "unknownState": "Unknown state - this is a bug.",
+    "other": "Other",
+    "mods": "mods",
+    "plugins": "plugins",
+    "otherSourcesDescription": "The following other {sourceNoun} are installed, but didn't show up in this profile. Yay!"
+  },
+  "graph": {
+    "refine": "Refine",
+    "description": "The graph below shows some key metrics over the course of the profile. You can drag + select with your cursor to refine the profile to a specific time period."
+  },
+  "sampler": {
+    "memoryProfile": "Memory Profile",
+    "profile": "Profile",
+    "interval": "interval",
+    "ticks": "ticks",
+    "allView": "All View",
+    "allViewDescription": "This is the default profiler view. It shows the entire profile as an expandable tree.",
+    "labelMode": {
+      "allocation": {
+        "bytesPerSecond": "The value displayed is the number of bytes of memory allocated per second on average (memory pressure) by each frame.",
+        "percentage": "The value displayed is number of bytes of memory allocated by each frame divided by the total allocated as a percentage."
+      },
+      "timing": {
+        "timePerTick": "The value displayed against each frame is the average time in milliseconds spent executing the method each tick.",
+        "percentage": "The value displayed against each frame is the time divided by the total time as a percentage."
+      }
+    },
+    "metadata": {
+      "platform": "Platform",
+      "memory": "Memory",
+      "network": "Network",
+      "jvmFlags": "JVM Flags",
+      "configurations": "Configurations",
+      "world": "World",
+      "misc": "Misc",
+      "gameRules": "Game Rules",
+      "pluginsMods": "Plugins/Mods"
+    },
+    "pluginsModsList": {
+      "pluginsMods": "Plugins/Mods",
+      "dataPacks": "Data Packs"
+    },
+    "gameRules": {
+      "allSetToDefault": "All game rules are set to default values.",
+      "overrides": "Game Rule Overrides",
+      "overridesDescription": "(Values are only shown below when they differ from the default)",
+      "showDefaults": "Show default values",
+      "hide": "Hide",
+      "defaults": "Game Rule Defaults",
+      "defaultsDescription": "(The default values for each game rule)"
+    },
+    "worldStatistics": {
+      "summary": "Summary",
+      "entities": "Entities",
+      "entitiesTotal": "Entities (total)",
+      "chunks": "Chunks",
+      "chunksTotal": "Chunks (total)",
+      "entityCounts": "Entity Counts",
+      "region": "Region",
+      "regionOf": "Region #{number} (of {total})",
+      "world": "World"
+    },
+    "memoryStatistics": {
+      "memoryAreas": "Memory Areas",
+      "heap": "Heap",
+      "nonHeap": "Non Heap",
+      "heapPrefix": "Heap - ",
+      "atLastGC": " (at last GC)",
+      "used": "Used",
+      "committed": "Committed",
+      "max": "Max"
+    },
+    "platformStatistics": {
+      "platformDescription": "The {platformType} is a {brand} {platformType} running {spark} version \"{version}\".",
+      "minecraftVersion": "The detected Minecraft version is \"{version}\".",
+      "onlineMode": "The {platformType} is running in {mode}.",
+      "playerCount": "The {platformType} had a player count of {count} when the profile completed.",
+      "systemDescription": "The system is running {osName} ({arch}) version \"{osVersion}\" and has {threads} CPU threads available.",
+      "cpuDescription": "The CPU is described as an {modelName}.",
+      "javaDescription": "The process is using Java {javaVersion} ({vendorVersion} from {vendor}).",
+      "jvmDescription": "The JVM is a {jvmName}.",
+      "uptime": "The current process uptime is {uptime}.",
+      "profilerRunning": "The profiler {engine} was running for {duration}{ticks}.",
+      "includedTicks": "{count} ticks exceeded the 'only ticks over' threshold.",
+      "asyncEngine": "async",
+      "javaEngine": "java",
+      "system": "system",
+      "platform": "platform",
+      "spark": "spark",
+      "server": "server",
+      "application": "application"
+    },
+    "networkStatistics": {
+      "networkInterfaces": "Network Interfaces",
+      "systemLevelNote": "Note: the usage tracked below is captured at a system level (includes data from other processes running on the same machine).",
+      "transmit": "Transmit",
+      "receive": "Receive",
+      "bytesPerSecond": "bytes/sec",
+      "packetsPerSecond": "packets/sec",
+      "min": "min",
+      "med": "med",
+      "percentile95": "95%ile",
+      "max": "max"
+    }
+  }
+}

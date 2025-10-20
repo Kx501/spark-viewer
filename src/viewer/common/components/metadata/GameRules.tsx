@@ -1,11 +1,14 @@
 import { useState } from 'react';
 import { WorldStatistics_GameRule } from '../../../proto/spark_pb';
+import { useTranslation } from '../../../../hooks/useTranslation';
 
 export interface GameRulesProps {
     gameRules: WorldStatistics_GameRule[];
 }
 
 export default function GameRules({ gameRules }: GameRulesProps) {
+    const { t } = useTranslation();
+    
     const setRules = gameRules.filter(
         gameRule => !gameRuleIsDefaultInAllWorlds(gameRule)
     );
@@ -16,15 +19,14 @@ export default function GameRules({ gameRules }: GameRulesProps) {
         <div className="gamerules">
             {setRules.length === 0 && (
                 <>
-                    <p>All game rules are set to default values.</p>
+                    <p>{t('sampler.gameRules.allSetToDefault')}</p>
                 </>
             )}
             {setRules.length > 0 && (
                 <>
-                    <h2>Game Rule Overrides</h2>
+                    <h2>{t('sampler.gameRules.overrides')}</h2>
                     <span>
-                        (Values are only shown below when they differ from the
-                        default)
+                        {t('sampler.gameRules.overridesDescription')}
                     </span>
                     <ul>
                         {setRules.map(gameRule => (
@@ -51,13 +53,13 @@ export default function GameRules({ gameRules }: GameRulesProps) {
             )}
 
             <button onClick={() => setShowDefaults(value => !value)}>
-                {showDefaults ? 'Hide' : 'Show'} default values
+                {showDefaults ? t('sampler.gameRules.hide') : t('sampler.gameRules.showDefaults')}
             </button>
 
             {showDefaults && (
                 <>
-                    <h2>Game Rule Defaults</h2>
-                    <span>(The default values for each game rule)</span>
+                    <h2>{t('sampler.gameRules.defaults')}</h2>
+                <span>{t('sampler.gameRules.defaultsDescription')}</span>
                     <ul>
                         {gameRules.map(gameRule => (
                             <li key={gameRule.name}>

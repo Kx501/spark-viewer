@@ -1,6 +1,7 @@
 import { Dispatch, SetStateAction, useContext } from 'react';
 import { SamplerMetadata_SamplerMode } from '../../../../proto/spark_pb';
 import { MetadataContext } from '../../SamplerContext';
+import { useTranslation } from '../../../../../hooks/useTranslation';
 import Button from './Button';
 
 export interface LabelModeButtonProps {
@@ -13,6 +14,7 @@ export default function LabelModeButton({
     setLabelMode,
 }: LabelModeButtonProps) {
     const metadata = useContext(MetadataContext)!;
+    const { t } = useTranslation();
     if (!metadata.numberOfTicks) {
         return null;
     }
@@ -23,18 +25,17 @@ export default function LabelModeButton({
                 value={labelMode}
                 setValue={setLabelMode}
                 title="Label"
+                titleKey="button.label"
                 labelTrue="Bytes per second"
+                labelTrueKey="button.bytesPerSecond"
                 labelFalse="Percentage"
+                labelFalseKey="button.percentage"
             >
                 <p>
-                    The value displayed is the number of bytes of memory
-                    allocated per second on average (memory pressure) by each
-                    frame.
+                    {t('sampler.labelMode.allocation.bytesPerSecond')}
                 </p>
                 <p>
-                    The value displayed is number of bytes of memory allocated
-                    by each frame divided by the total allocated as a
-                    percentage.
+                    {t('sampler.labelMode.allocation.percentage')}
                 </p>
             </Button>
         );
@@ -44,16 +45,17 @@ export default function LabelModeButton({
                 value={labelMode}
                 setValue={setLabelMode}
                 title="Label"
+                titleKey="button.label"
                 labelTrue="Time per tick"
+                labelTrueKey="button.timePerTick"
                 labelFalse="Percentage"
+                labelFalseKey="button.percentage"
             >
                 <p>
-                    The value displayed against each frame is the average time
-                    in milliseconds spent executing the method each tick.
+                    {t('sampler.labelMode.timing.timePerTick')}
                 </p>
                 <p>
-                    The value displayed against each frame is the time divided
-                    by the total time as a percentage.
+                    {t('sampler.labelMode.timing.percentage')}
                 </p>
             </Button>
         );

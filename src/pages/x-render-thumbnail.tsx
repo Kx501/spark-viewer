@@ -9,6 +9,7 @@ import {
     SamplerDataLite,
 } from '../viewer/proto/spark_pb';
 import { NextPageWithLayout } from './_app';
+import { useTranslation } from '../hooks/useTranslation';
 
 const Thumbnail = dynamic(
     () => import('../viewer/common/components/Thumbnail')
@@ -16,6 +17,7 @@ const Thumbnail = dynamic(
 
 const RenderThumbnail: NextPageWithLayout = () => {
     const router = useRouter();
+    const { t } = useTranslation();
 
     const code = useMemo(() => {
         return router.query['code'] as string;
@@ -43,7 +45,7 @@ const RenderThumbnail: NextPageWithLayout = () => {
     }, [code, router]);
 
     if (error) {
-        return <p className="loading-error">:(</p>;
+        return <p className="loading-error">{t('thumbnail.error')}</p>;
     }
 
     if (data && type) {
@@ -54,7 +56,7 @@ const RenderThumbnail: NextPageWithLayout = () => {
         );
     }
 
-    return <p>loading</p>;
+    return <p>{t('common.loading')}</p>;
 };
 
 export function parse(

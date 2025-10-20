@@ -1,6 +1,7 @@
 import { AutoSizer, Column, Table } from 'react-virtualized';
 import { formatBytes } from '../common/util/format';
 import HeapData from './HeapData';
+import { useTranslation } from '../../hooks/useTranslation';
 
 export interface HeapTableProps {
     data: HeapData;
@@ -8,6 +9,7 @@ export interface HeapTableProps {
 }
 
 export default function HeapTable({ data, searchQuery }: HeapTableProps) {
+    const { t } = useTranslation();
     let { entries } = data;
 
     if (searchQuery) {
@@ -29,7 +31,7 @@ export default function HeapTable({ data, searchQuery }: HeapTableProps) {
                     rowGetter={({ index }) => entries[index]}
                 >
                     <Column
-                        label="Rank"
+                        label={t('heapTable.rank')}
                         dataKey="order"
                         width={70}
                         cellRenderer={({ cellData }) => {
@@ -37,7 +39,7 @@ export default function HeapTable({ data, searchQuery }: HeapTableProps) {
                         }}
                     />
                     <Column
-                        label="Instances"
+                        label={t('heapTable.instances')}
                         dataKey="instances"
                         width={100}
                         cellRenderer={({ cellData }) => {
@@ -45,7 +47,7 @@ export default function HeapTable({ data, searchQuery }: HeapTableProps) {
                         }}
                     />
                     <Column
-                        label="Size"
+                        label={t('heapTable.size')}
                         dataKey="size"
                         width={100}
                         cellRenderer={({ cellData }) => {
@@ -53,7 +55,7 @@ export default function HeapTable({ data, searchQuery }: HeapTableProps) {
                         }}
                     />
                     <Column
-                        label="Type"
+                        label={t('heapTable.type')}
                         dataKey="type"
                         width={200}
                         flexGrow={1}

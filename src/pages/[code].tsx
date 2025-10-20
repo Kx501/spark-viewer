@@ -5,6 +5,7 @@ import { Suspense } from 'react';
 import SparkLayout from '../components/SparkLayout';
 import TextBox from '../components/TextBox';
 import { env } from '../env';
+import { useTranslation } from '../hooks/useTranslation';
 
 const SparkViewer = dynamic(() => import('../viewer/SparkViewer'));
 
@@ -13,13 +14,15 @@ interface ViewerPageProps {
 }
 
 export default function ViewerPage({ code }: ViewerPageProps) {
+    const { t } = useTranslation();
+    
     return (
         <>
             {code !== '_' && <ThumbnailMetaTags code={code} />}
             <Suspense
                 fallback={
                     <SparkLayout>
-                        <TextBox>Loading...</TextBox>
+                        <TextBox>{t('common.loading')}</TextBox>
                     </SparkLayout>
                 }
             >

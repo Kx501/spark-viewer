@@ -3,12 +3,14 @@ import { formatBytes } from '../../../util/format';
 import { Formatter, WidgetFormat } from '../format';
 import Widget from '../Widget';
 import WidgetSingleValue from '../WidgetSingleValue';
+import { useTranslation } from '../../../../../hooks/useTranslation';
 
 export interface DiskWidgetProps {
     disk: SystemStatistics_Disk;
 }
 
 export default function DiskWidget({ disk }: DiskWidgetProps) {
+    const { t } = useTranslation();
     const formatter: Formatter = {
         color: (value, total) => {
             const percent = value / total;
@@ -26,7 +28,7 @@ export default function DiskWidget({ disk }: DiskWidgetProps) {
     };
 
     return (
-        <Widget title="Disk" formatter={formatter}>
+        <Widget title={t('widget.disk')} formatter={formatter}>
             <WidgetSingleValue value={disk.used} total={disk.total} />
         </Widget>
     );

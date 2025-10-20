@@ -18,6 +18,7 @@ import {
 } from 'react';
 import SparkLayout from '../components/SparkLayout';
 import { env } from '../env';
+import { TranslationProvider } from '../hooks/useTranslation';
 
 export interface SelectedFile {
     selectedFile?: File;
@@ -91,11 +92,13 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
                 />
                 <title>{title}</title>
             </Head>
-            <SelectedFileContext.Provider
-                value={{ selectedFile, setSelectedFile }}
-            >
-                {getLayout(<Component {...pageProps} />)}
-            </SelectedFileContext.Provider>
+            <TranslationProvider>
+                <SelectedFileContext.Provider
+                    value={{ selectedFile, setSelectedFile }}
+                >
+                    {getLayout(<Component {...pageProps} />)}
+                </SelectedFileContext.Provider>
+            </TranslationProvider>
         </>
     );
 }

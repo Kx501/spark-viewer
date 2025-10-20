@@ -6,6 +6,7 @@ import { formatBytes } from '../../../util/format';
 import { Formatter, WidgetFormat } from '../format';
 import Widget from '../Widget';
 import WidgetSingleValue from '../WidgetSingleValue';
+import { useTranslation } from '../../../../../hooks/useTranslation';
 
 export interface MemoryWidgetProps {
     memory:
@@ -15,6 +16,7 @@ export interface MemoryWidgetProps {
 }
 
 export default function MemoryWidget({ memory, label }: MemoryWidgetProps) {
+    const { t } = useTranslation();
     const formatter: Formatter = {
         color: (value, total) => {
             const percent = value / total;
@@ -36,7 +38,7 @@ export default function MemoryWidget({ memory, label }: MemoryWidgetProps) {
         (memory as SystemStatistics_Memory_MemoryPool).total;
 
     return (
-        <Widget title="Memory" label={label} formatter={formatter}>
+        <Widget title={t('widget.memory')} label={label} formatter={formatter}>
             <WidgetSingleValue value={memory.used} total={total} />
         </Widget>
     );

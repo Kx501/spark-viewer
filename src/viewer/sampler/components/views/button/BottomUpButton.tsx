@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction } from 'react';
+import { useTranslation } from '../../../../../hooks/useTranslation';
 import Button from './Button';
 
 export interface BottomUpButtonProps {
@@ -10,21 +11,24 @@ export default function BottomUpButton({
     bottomUp,
     setBottomUp,
 }: BottomUpButtonProps) {
+    const { t } = useTranslation();
+    
     return (
         <Button
             value={bottomUp}
             setValue={setBottomUp}
             title="Display"
+            titleKey="button.display"
             labelTrue="Bottom Up"
+            labelTrueKey="button.bottomUp"
             labelFalse="Top Down"
+            labelFalseKey="button.topDown"
         >
             <p>
-                The call tree is reversed - expanding a node reveals the method
-                that called it.
+                {t('button.bottomUpDescription')}
             </p>
             <p>
-                The call tree is &#39;normal&#39; - expanding a node reveals the
-                sub-methods that it calls.
+                {t('button.topDownDescription')}
             </p>
         </Button>
     );

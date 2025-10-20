@@ -3,6 +3,10 @@ import { env } from './src/env';
 
 const nextConfig: NextConfig = {
     output: 'standalone',
+    i18n: {
+        locales: ['en-US', 'zh-CN'],
+        defaultLocale: 'zh-CN',
+    },
     webpack: config => {
         config.module.rules.push({
             test: /\.svg$/,

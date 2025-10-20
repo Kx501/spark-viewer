@@ -1,16 +1,19 @@
 import { NextPage } from 'next';
 import TextBox from '../components/TextBox';
+import { useTranslation } from '../hooks/useTranslation';
 
 interface ErrorPageProps {
     statusCode?: number;
 }
 
 const Error: NextPage<ErrorPageProps> = ({ statusCode }) => {
+    const { t } = useTranslation();
+    
     return (
         <TextBox>
             {statusCode
-                ? `Server error ${statusCode}`
-                : 'Uh oh. An unexpected error occurred with spark-viewer client.'}
+                ? t('errors.serverError', { statusCode })
+                : t('errors.unexpectedError')}
         </TextBox>
     );
 };

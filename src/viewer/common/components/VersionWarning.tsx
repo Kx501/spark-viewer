@@ -2,10 +2,12 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from 'react';
 import TextBox from '../../../components/TextBox';
+import { useTranslation } from '../../../hooks/useTranslation';
 
 import styles from '../../../style/sampler.module.scss';
 
 export default function VersionWarning() {
+    const { t } = useTranslation();
     const [show, setShow] = useState(true);
 
     if (!show) {
@@ -17,7 +19,7 @@ export default function VersionWarning() {
     }
 
     const warning = (
-        <span role="img" aria-label="warning">
+        <span role="img" aria-label={t('common.warning')}>
             ⚠️
         </span>
     );

@@ -16,6 +16,7 @@ import useFetchResult, { Status } from '../hooks/useFetchResult';
 import changelogStyles from '../style/changelog.module.scss';
 import styles from '../style/downloads.module.scss';
 import { ChangelogData, ChangelogEntry, ChangelogList } from './changelog';
+import { useTranslation } from '../hooks/useTranslation';
 
 interface JenkinsInfo {
     artifacts: JenkinsArtifact[];
@@ -79,6 +80,7 @@ const OLD_VERSIONS: OldVersion[] = [
 ];
 
 export default function Download() {
+    const { t } = useTranslation();
     const [info, status] = useFetchResult<JenkinsInfo>(
         `https://ci.lucko.me/job/spark/lastSuccessfulBuild/api/json?tree=url,timestamp,artifacts[fileName,relativePath]`
     );
@@ -91,12 +93,12 @@ export default function Download() {
     if (status !== Status.ERROR) {
         content = <DownloadPage info={info} changelog={changelog} />;
     } else {
-        content = <TextBox>Error: unable to get version information.</TextBox>;
+        content = <TextBox>{t('downloads.error.versionInfo')}</TextBox>;
     }
 
     return (
         <article className={styles.downloads}>
-            <h1>Downloads</h1>
+            <h1>{t('downloads.title')}</h1>
             {content}
         </article>
     );
@@ -135,15 +137,15 @@ const DownloadPage = ({
     info?: JenkinsInfo;
     changelog?: ChangelogData;
 }) => {
+    const { t } = useTranslation();
     const [version, timestamp, artifacts] = processJenkinsInfo(info);
     const changelogSlice = changelog?.changelog?.slice(0, 5) || [];
 
     return (
         <>
             <p>
-                The latest version of spark is{' '}
-                <span className="version-number">v{version}</span>, which was
-                created at {timestamp}.
+                {t('downloads.latestVersion')}{' '}
+                <span className="version-number">v{version}</span>{t('downloads.createdAt')}{timestamp}.
             </p>
             <br />
 
@@ -151,59 +153,56 @@ const DownloadPage = ({
 
             <br />
             <p>
-                Once you&apos;ve got spark installed, head over to the{' '}
+                {t('downloads.afterInstall')}{' '}
                 <a href={`${env.NEXT_PUBLIC_SPARK_BASE_URL}/docs`}>
-                    documentation
+                    {t('downloads.documentation')}
                 </a>{' '}
-                to learn how to use it!
+                {t('downloads.learnHowToUse')}
             </p>
             <p className="caveat">
-                Note: spark is pre-bundled with Paper 1.21+, so you don&apos;t
-                need to install the plugin!
+                {t('downloads.notePaperBundled')}
             </p>
 
-            <h2>Recent Changes</h2>
+            <h2>{t('downloads.recentChanges')}</h2>
             <RecentChangelog changelog={changelogSlice} />
 
-            <h2>Other Platforms</h2>
+            <h2>{t('downloads.otherPlatforms')}</h2>
             <p>
-                spark is also available for other platforms, including Folia,
-                Geyser, Minestom, and Nukkit. These releases are provided as-is
-                and are supported by the community.
+                {t('downloads.otherPlatformsDesc')}
             </p>
             <p>
-                For more info, please see{' '}
+                {t('downloads.forMoreInfo')}{' '}
                 <a href="https://github.com/lucko/spark-extra-platforms">
                     spark-extra-platforms
                 </a>{' '}
-                on GitHub. Downloads are available from{' '}
+                {t('downloads.onGitHub')}{' '}
                 <a href="https://ci.lucko.me/job/spark-extra-platforms/">
                     Jenkins
                 </a>
                 .
             </p>
 
-            <h2>Older Versions</h2>
+            <h2>{t('downloads.olderVersions')}</h2>
             <p>
-                Releases for older Minecraft versions are listed below. These
-                are not actively supported, but should still work ok :)
+                {t('downloads.olderVersionsDesc')}
             </p>
             <OlderVersionsList versions={OLD_VERSIONS} />
-            <p>(Note: The links above will open CurseForge.com in a new tab)</p>
+            <p>{t('downloads.noteCurseForgeLinks')}</p>
         </>
     );
 };
 
 const RecentChangelog = ({ changelog }: { changelog: ChangelogEntry[] }) => {
+    const { t } = useTranslation();
     if (changelog.length === 0) {
-        return <p>Loading...</p>;
+        return <p>{t('common.loading')}</p>;
     }
 
     return (
         <div className={changelogStyles.changelog}>
             <ChangelogList entries={changelog} />
             <p>
-                And more! See the <Link href={'changelog'}>full changelog</Link>
+                {t('downloads.andMore')} <Link href={'changelog'}>{t('downloads.fullChangelog')}</Link>
                 .
             </p>
         </div>

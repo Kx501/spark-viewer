@@ -4,6 +4,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useMemo, useState } from 'react';
+import { useTranslation } from '../../../../../hooks/useTranslation';
 import {
     WorldStatistics_Region,
     WorldStatistics_World,
@@ -22,6 +23,7 @@ export interface WorldRegionSummaryProps {
 export default function WorldRegionSummary({
     worlds,
 }: WorldRegionSummaryProps) {
+    const { t } = useTranslation();
     const regions = useMemo(() => {
         const regions: Region[] = [];
         for (const world of worlds) {
@@ -63,30 +65,30 @@ export default function WorldRegionSummary({
     return (
         <div className="region-view">
             <div className="header region-selector">
-                <div className="button" onClick={previous} title="Previous">
+                <div className="button" onClick={previous} title={t('button.previous')}>
                     <FontAwesomeIcon icon={faBackwardStep} />
                 </div>
                 <span>
-                    Region #{regionIdx + 1} (of {regions.length})
+                    {t('sampler.worldStatistics.regionOf', { number: regionIdx + 1, total: regions.length })}
                 </span>
-                <div className="button" onClick={next} title="Next">
+                <div className="button" onClick={next} title={t('button.next')}>
                     <FontAwesomeIcon icon={faForwardStep} />
                 </div>
             </div>
             <div className="detail-lists">
                 <div>
                     <p>
-                        <b>Entities</b> (<span>{region.totalEntities}</span>):
+                        <b>{t('sampler.worldStatistics.entities')}</b> (<span>{region.totalEntities}</span>):
                     </p>
                     <EntityCountsList entityCounts={combinedEntities} />
                 </div>
                 <div>
                     <p>
-                        <b>World</b>: {region.world}
+                        <b>{t('sampler.worldStatistics.world')}</b>: {region.world}
                     </p>
                     <br />
                     <p>
-                        <b>Chunks</b> (<span>{region.chunks.length}</span>):
+                        <b>{t('sampler.worldStatistics.chunks')}</b> (<span>{region.chunks.length}</span>):
                     </p>
                     <ChunkCountsList chunks={region.chunks} />
                 </div>

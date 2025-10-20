@@ -1,4 +1,5 @@
 import { MappingsMetadata } from '../../mappings/fetch';
+import { useTranslation } from '../../../../hooks/useTranslation';
 
 export interface MappingsSelectorProps {
     mappingsMetadata: MappingsMetadata;
@@ -11,6 +12,7 @@ export default function MappingsSelector({
     mappings,
     setMappings,
 }: MappingsSelectorProps) {
+    const { t } = useTranslation();
     let groups: MappingsSelectorGroup[] = [
         {
             id: 'none',
@@ -37,7 +39,7 @@ export default function MappingsSelector({
     return (
         <span className="dropdown" id="mappings-selector">
             <select
-                title="mappings"
+                title={t('button.mappings')}
                 value={mappings}
                 onChange={e => setMappings(e.target.value)}
             >

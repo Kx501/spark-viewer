@@ -9,6 +9,7 @@ import { formatBytes } from '../../util/format';
 import { Formatter, WidgetFormat } from '../widgets/format';
 import Widget from '../widgets/Widget';
 import WidgetValue from '../widgets/WidgetValue';
+import { useTranslation } from '../../../../hooks/useTranslation';
 
 export interface NetworkStatisticsProps {
     systemStatistics: SystemStatisticsProto;
@@ -17,13 +18,13 @@ export interface NetworkStatisticsProps {
 export default function NetworkStatistics({
     systemStatistics,
 }: NetworkStatisticsProps) {
+    const { t } = useTranslation();
+    
     return (
         <>
-            <h2>Network Interfaces</h2>
+            <h2>{t('sampler.networkStatistics.networkInterfaces')}</h2>
             <p>
-                Note: the usage tracked below is captured at a system level
-                (includes data from other processes running on the same
-                machine).
+                {t('sampler.networkStatistics.systemLevelNote')}
             </p>
             <div>
                 {Object.entries(systemStatistics.net).map(([name, data]) => (
@@ -41,6 +42,8 @@ const NetworkInterface = ({
     name: string;
     data: SystemStatistics_NetInterface;
 }) => {
+    const { t } = useTranslation();
+    
     return (
         <div>
             <h3>{name}</h3>
@@ -52,13 +55,13 @@ const NetworkInterface = ({
                 )}
             >
                 <NetworkInterfaceWidget
-                    direction="Transmit"
-                    format="bytes/sec"
+                    direction={t('sampler.networkStatistics.transmit')}
+                    format={t('sampler.networkStatistics.bytesPerSecond')}
                     values={data.txBytesPerSecond!}
                 />
                 <NetworkInterfaceWidget
-                    direction="Receive"
-                    format="bytes/sec"
+                    direction={t('sampler.networkStatistics.receive')}
+                    format={t('sampler.networkStatistics.bytesPerSecond')}
                     values={data.rxBytesPerSecond!}
                 />
             </div>
@@ -70,13 +73,13 @@ const NetworkInterface = ({
                 )}
             >
                 <NetworkInterfaceWidget
-                    direction="Transmit"
-                    format="packets/sec"
+                    direction={t('sampler.networkStatistics.transmit')}
+                    format={t('sampler.networkStatistics.packetsPerSecond')}
                     values={data.txPacketsPerSecond!}
                 />
                 <NetworkInterfaceWidget
-                    direction="Receive"
-                    format="packets/sec"
+                    direction={t('sampler.networkStatistics.receive')}
+                    format={t('sampler.networkStatistics.packetsPerSecond')}
                     values={data.rxPacketsPerSecond!}
                 />
             </div>
@@ -84,8 +87,8 @@ const NetworkInterface = ({
     );
 };
 
-type Direction = 'Transmit' | 'Receive';
-type StatFormat = 'bytes/sec' | 'packets/sec';
+type Direction = string;
+type StatFormat = string;
 
 interface NetworkInterfaceWidgetProps {
     direction: Direction;
@@ -98,6 +101,7 @@ const NetworkInterfaceWidget = ({
     format,
     values,
 }: NetworkInterfaceWidgetProps) => {
+    const { t } = useTranslation();
     const formatter: Formatter = {
         color: value => {
             if (value <= 0) {
@@ -120,10 +124,10 @@ const NetworkInterfaceWidget = ({
 
     return (
         <Widget title={direction} label={format} formatter={formatter}>
-            <WidgetValue value={values.min} label="min" />
-            <WidgetValue value={values.median} label="med" />
-            <WidgetValue value={values.percentile95} label="95%ile" />
-            <WidgetValue value={values.max} label="max" />
+            <WidgetValue value={values.min} label={t('sampler.networkStatistics.min')} />
+            <WidgetValue value={values.median} label={t('sampler.networkStatistics.med')} />
+            <WidgetValue value={values.percentile95} label={t('sampler.networkStatistics.percentile95')} />
+            <WidgetValue value={values.max} label={t('sampler.networkStatistics.max')} />
         </Widget>
     );
 };

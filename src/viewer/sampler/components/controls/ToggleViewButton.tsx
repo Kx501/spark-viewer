@@ -3,6 +3,7 @@ import { Dispatch, SetStateAction } from 'react';
 import FaButton from '../../../../components/FaButton';
 import { SamplerMetadata } from '../../../proto/spark_pb';
 import { View, VIEW_ALL, VIEW_FLAT, VIEW_SOURCES } from '../views/types';
+import { useTranslation } from '../../../../hooks/useTranslation';
 
 export interface ToggleViewButtonProps {
     metadata: SamplerMetadata;
@@ -17,6 +18,7 @@ export default function ToggleViewButton({
     setView,
     sourcesViewSupported,
 }: ToggleViewButtonProps) {
+    const { t } = useTranslation();
     const supportedViews: View[] = [
         VIEW_ALL,
         VIEW_FLAT,
@@ -31,16 +33,19 @@ export default function ToggleViewButton({
                 }
 
                 let label;
+                let labelKey;
                 if (v === VIEW_ALL) {
                     label = 'all';
+                    labelKey = 'toggleView.all';
                 } else if (v === VIEW_FLAT) {
                     label = 'flat';
+                    labelKey = 'toggleView.flat';
                 } else {
-                    label = ['Fabric', 'Forge', 'NeoForge'].includes(
+                    const isModPlatform = ['Fabric', 'Forge', 'NeoForge'].includes(
                         metadata?.platform?.name || ''
-                    )
-                        ? 'mods'
-                        : 'plugins';
+                    );
+                    label = isModPlatform ? 'mods' : 'plugins';
+                    labelKey = isModPlatform ? 'toggleView.mods' : 'toggleView.plugins';
                 }
 
                 return (
@@ -49,13 +54,14 @@ export default function ToggleViewButton({
                         icon={faEye}
                         onClick={onClick}
                         title="Toggle the view"
+                        titleKey="button.toggleView"
                         extraClassName={
                             view === v
                                 ? 'sources-view-button toggled'
                                 : 'sources-view-button'
                         }
                     >
-                        <span>{label}</span>
+                        <span>{labelKey ? t(labelKey) : label}</span>
                     </FaButton>
                 );
             })}

@@ -1,12 +1,14 @@
 import { HeaderProps } from './types';
+import { useTranslation } from '../../../../../hooks/useTranslation';
 
 export default function AllViewHeader({ children }: HeaderProps) {
+    const { t } = useTranslation();
+    
     return (
         <div className="header">
-            <h2>All View</h2>
+            <h2>{t('sampler.allView')}</h2>
             <p>
-                This is the default profiler view. It shows the entire profile
-                as an expandable tree.
+                {t('sampler.allViewDescription')}
             </p>
             {children}
         </div>

@@ -5,6 +5,7 @@ import {
 } from '../../../proto/spark_pb';
 import { formatBytes } from '../../util/format';
 import { WidgetFormat } from '../widgets/format';
+import { useTranslation } from '../../../../hooks/useTranslation';
 
 export interface MemoryStatisticsProps {
     memory: PlatformStatistics_Memory;
@@ -15,13 +16,15 @@ export default function MemoryStatistics({
     memory,
     gc,
 }: MemoryStatisticsProps) {
+    const { t } = useTranslation();
+    
     return (
         <>
-            <h2>Memory Areas</h2>
+            <h2>{t('sampler.memoryStatistics.memoryAreas')}</h2>
             <div className="memory">
-                {memory.heap && <MemoryPool name="Heap" usage={memory.heap} />}
+                {memory.heap && <MemoryPool name={t('sampler.memoryStatistics.heap')} usage={memory.heap} />}
                 {memory.nonHeap && (
-                    <MemoryPool name="Non Heap" usage={memory.nonHeap} />
+                    <MemoryPool name={t('sampler.memoryStatistics.nonHeap')} usage={memory.nonHeap} />
                 )}
                 {(memory.pools || [])
                     .filter(pool => pool.usage)
@@ -29,7 +32,7 @@ export default function MemoryStatistics({
                         return (
                             <MemoryPool
                                 key={pool.name}
-                                name={'Heap - ' + pool.name}
+                                name={t('sampler.memoryStatistics.heapPrefix') + pool.name}
                                 usage={pool.usage!}
                                 collectionUsage={pool.collectionUsage}
                             />
@@ -47,6 +50,8 @@ interface MemoryPoolProps {
 }
 
 const MemoryPool = ({ name, usage, collectionUsage }: MemoryPoolProps) => {
+    const { t } = useTranslation();
+    
     return (
         <div className="memory-pool">
             <div className="header">{name}</div>
@@ -54,7 +59,7 @@ const MemoryPool = ({ name, usage, collectionUsage }: MemoryPoolProps) => {
             {collectionUsage && (
                 <div>
                     <br />
-                    <div className="header">{name} (at last GC)</div>
+                    <div className="header">{name}{t('sampler.memoryStatistics.atLastGC')}</div>
                     <MemoryUsageBar {...collectionUsage} />
                 </div>
             )}
@@ -67,6 +72,8 @@ const MemoryUsageBar = ({
     committed,
     max,
 }: PlatformStatistics_Memory_MemoryUsage) => {
+    const { t } = useTranslation();
+    
     let percent;
     if (max && max > 0) {
         percent = used / max;
@@ -95,14 +102,14 @@ const MemoryUsageBar = ({
             </div>
             <ul>
                 <li>
-                    Used: <span>{formatBytes(used)}</span>
+                    {t('sampler.memoryStatistics.used')}: <span>{formatBytes(used)}</span>
                 </li>
                 <li>
-                    Committed: <span>{formatBytes(committed)}</span>
+                    {t('sampler.memoryStatistics.committed')}: <span>{formatBytes(committed)}</span>
                 </li>
                 {max !== -1 && max !== committed && (
                     <li>
-                        Max: <span>{formatBytes(max)}</span>
+                        {t('sampler.memoryStatistics.max')}: <span>{formatBytes(max)}</span>
                     </li>
                 )}
             </ul>

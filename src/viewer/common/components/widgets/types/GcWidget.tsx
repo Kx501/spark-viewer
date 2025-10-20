@@ -2,6 +2,7 @@ import { PlatformStatistics_Gc } from '../../../../proto/spark_pb';
 import { Formatter, WidgetFormat } from '../format';
 import Widget from '../Widget';
 import WidgetValue from '../WidgetValue';
+import { useTranslation } from '../../../../../hooks/useTranslation';
 
 export interface GcWidgetProps {
     gc: PlatformStatistics_Gc;
@@ -10,6 +11,7 @@ export interface GcWidgetProps {
 }
 
 export default function GcWidget({ gc, title, label }: GcWidgetProps) {
+    const { t } = useTranslation();
     let warningLevels = {
         // if a GC takes > the time in ms
         time: {
@@ -129,20 +131,20 @@ export default function GcWidget({ gc, title, label }: GcWidgetProps) {
     };
 
     return (
-        <Widget title="GC" label={label + ', ' + title}>
+        <Widget title={t('widget.gc')} label={label + ', ' + title}>
             <WidgetValue
                 value={gc.total}
-                label="total"
+                label={t('widget.gcTotal')}
                 formatter={WidgetFormat.defaultFormatter}
             />
             <WidgetValue
                 value={gc.avgTime}
-                label="avg time"
+                label={t('widget.gcAvgTime')}
                 formatter={timeFormatter}
             />
             <WidgetValue
                 value={gc.avgFrequency}
-                label="avg freq"
+                label={t('widget.gcAvgFreq')}
                 formatter={freqFormatter}
             />
         </Widget>

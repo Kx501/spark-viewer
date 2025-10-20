@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction } from 'react';
+import { useTranslation } from '../../../../../hooks/useTranslation';
 import Button from './Button';
 
 export interface MergeModeButtonProps {
@@ -10,22 +11,24 @@ export default function MergeModeButton({
     merged,
     setMerged,
 }: MergeModeButtonProps) {
+    const { t } = useTranslation();
+    
     return (
         <Button
             value={merged}
             setValue={setMerged}
             title="Merge Mode"
+            titleKey="button.mergeMode"
             labelTrue="Merge"
+            labelTrueKey="button.merge"
             labelFalse="Separate"
+            labelFalseKey="button.separate"
         >
             <p>
-                Method calls with the same signature will be merged together,
-                even though they may not have been invoked by the same calling
-                method.
+                {t('sampler.mergeModeDescription')}
             </p>
             <p>
-                Method calls that have the same signature, but that haven&apos;t
-                been invoked by the same calling method will show separately.
+                {t('button.separateDescription')}
             </p>
         </Button>
     );

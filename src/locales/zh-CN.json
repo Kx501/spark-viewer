@@ -1,0 +1,353 @@
+{
+  "common": {
+    "spark": "Spark",
+    "download": "下载",
+    "documentation": "文档",
+    "viewer": "查看器",
+    "about": "关于",
+    "profile": "性能分析",
+    "heap": "内存分析",
+    "health": "健康报告",
+    "home": "首页",
+    "language": "语言",
+    "loading": "加载中...",
+    "warning": "警告",
+    "and": "和",
+    "freeOpenSource": "在GitHub上是免费开源的",
+    "andOther": "和其他spark",
+    "contributors": "贡献者"
+  },
+  "button": {
+    "label": "标签",
+    "bytesPerSecond": "每秒字节数",
+    "timePerTick": "每tick时间",
+    "percentage": "百分比",
+    "mergeMode": "合并模式",
+    "merge": "合并",
+    "separate": "分离",
+    "display": "显示",
+    "bottomUp": "自底向上",
+    "topDown": "自顶向下",
+    "sortMode": "排序模式",
+    "selfBytesAllocated": "自分配字节数",
+    "totalBytesAllocated": "总分配字节数",
+    "selfTime": "自时间",
+    "totalTime": "总时间",
+    "exitFlameGraph": "退出火焰图视图",
+    "showSettings": "点击显示设置菜单",
+    "viewGraph": "查看图表",
+    "viewFlameGraph": "将配置文件显示为火焰图",
+    "exportProfile": "导出配置文件",
+    "toggleWidgets": "切换小部件",
+    "toggleMetadata": "切换元数据显示",
+    "toggleView": "切换视图",
+    "previous": "上一个",
+    "next": "下一个",
+    "mappings": "映射",
+    "settings": "设置",
+    "graph": "图表",
+    "labelMode": "标签模式",
+    "selfTimeMode": "自身时间模式",
+    "flameGraph": "火焰图",
+    "bottomUpDescription": "调用树是反向的 - 展开节点显示调用它的方法。",
+    "topDownDescription": "调用树是'正常'的 - 展开节点显示它调用的子方法。",
+    "separateDescription": "具有相同签名但未被相同调用方法调用的方法调用将分别显示。",
+    "contextMenu": {
+        "viewAsFlameGraph": "查看为火焰图",
+        "toggleBookmark": "切换书签",
+        "clearAllBookmarks": "清除所有书签"
+    },
+    "selfBytesAllocatedDesc": "方法根据在方法内直接分配的内存字节数排序",
+    "totalBytesAllocatedDesc": "方法根据在方法内直接分配的内存字节数以及子调用中的分配排序",
+    "selfTimeDesc": "方法根据其'自时间'（在方法内执行代码所花费的时间）排序",
+    "totalTimeDesc": "方法根据其'总时间'（在方法内执行代码所花费的时间以及执行子调用所花费的时间）排序"
+  },
+  "settings": {
+    "mappings": "映射",
+    "mappingsDesc": "选择查看器在显示分析器帧时应使用的反混淆映射。",
+    "infoPoints": "信息点",
+    "infoPointsDesc": "选择是否应显示信息点。"
+  },
+  "heapTable": {
+    "rank": "排名",
+    "instances": "实例数",
+    "size": "大小",
+    "type": "类型"
+  },
+  "networkStatistics": {
+    "min": "最小值",
+    "med": "中位数",
+    "percentile95": "95%分位数",
+    "max": "最大值"
+  },
+  "heapSummary": {
+    "title": "堆内存分析",
+    "createdBy": "创建者"
+  },
+  "toggleView": {
+    "all": "全部",
+    "flat": "扁平",
+    "mods": "模组",
+    "plugins": "插件"
+  },
+  "widget": {
+    "cpu": "CPU",
+    "gc": "GC",
+    "disk": "磁盘",
+    "ping": "Ping",
+    "tps": "TPS",
+    "mspt": "MSPT",
+    "memory": "内存",
+    "during": "期间",
+    "all": "全部",
+    "process": "进程",
+    "system": "系统",
+    "physical": "物理",
+    "swap": "交换",
+    "min": "最小值",
+    "med": "中位数",
+    "percentile95": "95%分位数",
+    "max": "最大值",
+    "gcTotal": "总计",
+    "gcAvgTime": "平均时间",
+    "gcAvgFreq": "平均频率",
+    "tps1m": "1分钟",
+    "tps5m": "5分钟",
+    "tps15m": "15分钟",
+    "cpu1m": "1分钟",
+    "cpu15m": "15分钟"
+  },
+  "homepage": {
+    "title": "Spark - Minecraft性能分析器",
+    "subtitle": "适用于Minecraft客户端、服务器和代理的性能分析器",
+    "navigation": {
+      "downloads": {
+        "title": "下载",
+        "description": "下载最新版本的Spark"
+      },
+      "docs": {
+        "title": "文档",
+        "description": "阅读文档和使用指南"
+      }
+    },
+    "about": {
+      "title": "关于",
+      "description": "Spark是一个性能分析器，由三个主要组件组成。",
+      "profiler": {
+        "title": "性能分析器",
+        "description": "Spark可以通过内置的分析器帮助诊断性能问题和瓶颈"
+      },
+      "memory": {
+        "title": "内存检查",
+        "description": "Spark可以生成完整的堆转储，展示内存使用最多的内容，并监控GC活动"
+      },
+      "health": {
+        "title": "健康报告",
+        "description": "Spark监控并报告多个关键指标，有助于跟踪随时间变化的性能"
+      },
+      "moreInfo": "更多关于Spark的信息可以在{github}找到，或者您可以在{discord}与我们聊天。"
+    },
+    "viewer": {
+      "title": "查看器",
+      "description": "这个网站也是一个在线的Spark数据查看器。",
+      "usageSteps": {
+        "title": "使用方法：",
+        "step1": "使用适当的Spark命令生成{profileLink}或{heapLink}。",
+        "step2": "数据上传后，点击链接打开查看器。"
+      },
+      "fileUpload": "您也可以生成或导出.sparkprofile或.sparkheap文件，并将其拖拽到下面的框中打开。",
+      "techInfo": "网站/查看器使用React框架用JavaScript编写，并在GitHub上开源。非常欢迎提交Pull Request！"
+    }
+  },
+  "header": {
+    "title": "Spark"
+  },
+  "footer": {
+    "copyright": "© {year} Spark。根据GPLv3许可证发布。",
+    "and": "和",
+    "freeOpenSource": "是GitHub上的免费开源项目。",
+    "andOther": "及其他Spark",
+    "contributors": "贡献者"
+  },
+  "downloads": {
+    "title": "下载",
+    "error": {
+      "versionInfo": "错误：无法获取版本信息。"
+    },
+    "latestVersion": "Spark的最新版本是",
+    "createdAt": "，创建于",
+    "afterInstall": "安装Spark后，请前往",
+    "documentation": "文档",
+    "learnHowToUse": "学习如何使用它！",
+    "notePaperBundled": "注意：Spark已预装在Paper 1.21+中，因此您无需安装插件！",
+    "recentChanges": "最近更新",
+    "otherPlatforms": "其他平台",
+    "otherPlatformsDesc": "Spark也适用于其他平台，包括Folia、Geyser、Minestom和Nukkit。这些版本由社区提供支持。",
+    "forMoreInfo": "更多信息，请查看",
+    "onGitHub": "在GitHub上。下载可从",
+    "olderVersions": "旧版本",
+    "olderVersionsDesc": "以下列出了旧版Minecraft的发布版本。这些版本不再积极支持，但应该仍然可以正常工作。",
+    "noteCurseForgeLinks": "（注意：以上链接将在新标签页中打开CurseForge.com）",
+    "andMore": "还有更多！查看",
+    "fullChangelog": "完整更新日志"
+  },
+  "changelog": {
+    "title": "更新日志",
+    "error": {
+      "getChangelog": "错误：无法获取更新日志。"
+    },
+    "description": "以下列表显示了最近提交到",
+    "gitRepository": "Spark Git仓库",
+    "goTo": "前往",
+    "downloadsPage": "下载页面",
+    "getLatestVersion": "获取最新版本。"
+  },
+  "errors": {
+    "404": "404 - 页面未找到",
+    "500": "500 - 服务器端错误",
+    "serverError": "服务器错误 {statusCode}",
+    "unexpectedError": "哎呀，spark-viewer 客户端发生了意外错误。"
+  },
+  "thumbnail": {
+    "error": ":("
+  },
+  "filePicker": {
+    "dragDrop": "拖放配置文件/堆文件到这里或点击选择",
+    "onlyAccepted": "（仅接受 .sparkprofile 或 .sparkheap 文件）"
+  },
+  "viewer": {
+    "loadingFile": "正在加载文件...",
+    "downloading": "正在下载...",
+    "unableToLoad": "无法加载数据。可能已过期？您使用的是最新版本吗？",
+    "unknownState": "未知状态 - 这是一个错误。",
+    "other": "其他",
+    "mods": "模组",
+    "plugins": "插件",
+    "otherSourcesDescription": "以下其他 {sourceNoun} 已安装，但未在此配置文件中显示。太好了！"
+  },
+  "graph": {
+    "refine": "精炼",
+    "description": "下方的图表显示了配置文件过程中的一些关键指标。您可以通过拖拽+选择光标来将配置文件精炼到特定的时间段。"
+  },
+  "sampler": {
+    "memoryProfile": "内存分析",
+    "profile": "性能分析",
+    "interval": "间隔",
+    "ticks": "tick数",
+    "allView": "全部视图",
+    "allViewDescription": "这是默认的分析器视图。它将整个配置文件显示为可展开的树状结构。",
+    "labelMode": {
+      "allocation": {
+        "bytesPerSecond": "显示的值是每个帧每秒平均分配的内存字节数（内存压力）。",
+        "percentage": "显示的值是每个帧分配的内存字节数除以总分配字节数的百分比。"
+      },
+      "timing": {
+        "timePerTick": "显示的值是每个帧在每个tick中执行方法的平均时间（毫秒）。",
+        "percentage": "显示的值是每个帧的时间除以总时间的百分比。"
+      }
+    },
+    "metadata": {
+      "platform": "平台",
+      "memory": "内存",
+      "network": "网络",
+      "jvmFlags": "JVM参数",
+      "configurations": "配置",
+      "world": "世界",
+      "misc": "杂项",
+      "gameRules": "游戏规则",
+      "pluginsMods": "插件/模组"
+    },
+    "pluginsModsList": {
+      "pluginsMods": "插件/模组",
+      "dataPacks": "数据包"
+    },
+    "gameRules": {
+      "allSetToDefault": "所有游戏规则都设置为默认值。",
+      "overrides": "游戏规则覆盖",
+      "overridesDescription": "（仅当值与默认值不同时，下方才会显示值）",
+      "showDefaults": "显示默认值",
+      "hide": "隐藏",
+      "defaults": "游戏规则默认值",
+      "defaultsDescription": "（每个游戏规则的默认值）"
+    },
+    "worldStatistics": {
+      "summary": "摘要",
+      "entities": "实体",
+      "entitiesTotal": "实体（总计）",
+      "chunks": "区块",
+      "chunksTotal": "区块（总计）",
+      "entityCounts": "实体数量",
+      "region": "区域",
+      "regionOf": "区域 #{number}（共 {total} 个）",
+      "world": "世界"
+    },
+    "memoryStatistics": {
+      "memoryAreas": "内存区域",
+      "heap": "堆内存",
+      "nonHeap": "非堆内存",
+      "heapPrefix": "堆内存 - ",
+      "atLastGC": " (上次GC时)",
+      "used": "已使用",
+      "committed": "已提交",
+      "max": "最大值"
+    },
+    "platformStatistics": {
+      "platformDescription": "{platformType}是{brand}，运行{spark}版本\"{version}\"。",
+      "minecraftVersion": "检测到的Minecraft版本是\"{version}\"。",
+      "onlineMode": "{platformType}运行在{mode}模式。",
+      "playerCount": "配置文件完成时，{platformType}的玩家数量为{count}。",
+      "systemDescription": "系统运行{osName} ({arch})版本\"{osVersion}\"，有{threads}个CPU线程可用。",
+      "cpuDescription": "CPU被描述为{modelName}。",
+      "javaDescription": "进程使用Java {javaVersion} ({vendorVersion}，来自{vendor})。",
+      "jvmDescription": "JVM是{jvmName}。",
+      "uptime": "当前进程运行时间为{uptime}。",
+      "profilerRunning": "性能分析器{engine}运行了{duration}{ticks}。",
+      "includedTicks": "{count}个tick超过了'仅包含超过阈值'的限制。",
+      "asyncEngine": "异步",
+      "javaEngine": "Java",
+      "system": "系统",
+      "platform": "平台",
+      "spark": "Spark",
+      "server": "服务器",
+      "application": "应用程序"
+    },
+    "networkStatistics": {
+      "networkInterfaces": "网络接口",
+      "systemLevelNote": "注意：下方跟踪的使用情况是在系统级别捕获的（包括同一台机器上运行的其他进程的数据）。",
+      "transmit": "发送",
+      "receive": "接收",
+      "bytesPerSecond": "字节/秒",
+      "packetsPerSecond": "数据包/秒",
+      "min": "最小值",
+      "med": "中位数",
+      "percentile95": "95%分位数",
+      "max": "最大值"
+    },
+    "extraPlatformMetadata": {
+      "description": "平台提供了一些额外的元数据："
+    },
+    "serverConfigurations": {
+      "description": "服务器正在使用以下配置设置："
+    },
+    "jvmStartupArgs": {
+      "description": "JVM启动时使用了以下参数："
+    },
+    "flatView": {
+      "title": "扁平视图",
+      "description": "此视图显示配置文件的扁平化表示，其中列出了前250个方法调用。"
+    },
+    "pluginsView": {
+      "title": "插件视图",
+      "description": "此视图显示按插件分解的配置文件过滤表示。"
+    },
+    "mergeModeDescription": "具有相同签名的方法调用将被合并在一起，即使它们可能不是由相同的调用方法调用的。",
+    "mappings": {
+      "title": "映射",
+      "description": "选择查看器在显示分析器帧时应使用的反混淆映射。"
+    },
+    "infoPoints": {
+      "title": "信息点",
+      "description": "选择是否应显示信息点。"
+    }
+  }
+}

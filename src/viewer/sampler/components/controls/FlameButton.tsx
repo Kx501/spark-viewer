@@ -4,6 +4,7 @@ import FaButton from '../../../../components/FaButton';
 import BasicVirtualNode from '../../node/BasicVirtualNode';
 import VirtualNode from '../../node/VirtualNode';
 import SamplerData from '../../SamplerData';
+import { useTranslation } from '../../../../hooks/useTranslation';
 
 export interface FlameButtonProps {
     data: SamplerData;
@@ -11,6 +12,7 @@ export interface FlameButtonProps {
 }
 
 export default function FlameButton({ data, setFlameData }: FlameButtonProps) {
+    const { t } = useTranslation();
     if (data.threads.length !== 1) {
         return null;
     }
@@ -24,6 +26,7 @@ export default function FlameButton({ data, setFlameData }: FlameButtonProps) {
             icon={faFire}
             onClick={onClick}
             title="View the profile as a Flame Graph"
+            titleKey="button.viewFlameGraph"
         />
     );
 }
